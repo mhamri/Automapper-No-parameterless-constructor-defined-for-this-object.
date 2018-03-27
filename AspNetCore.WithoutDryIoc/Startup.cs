@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.WithoutDryIoc.Mapping;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,14 +20,22 @@ namespace AspNetCore.WithoutDryIoc
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
             services.AddAutoMapper();
+
+            /*
+            // just to test added these to make sure it is not because the DI doesn't know about these classess, you can uncomment it
+            services.AddTransient<ComplexType>();
+            services.AddTransient<SampleClassDto>();
+            services.AddTransient<SampleClass>();
+            services.AddTransient<MappingProfile.NormalTypeResolver>();
+            */
+
+            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

@@ -1,4 +1,4 @@
-﻿namespace AspNetCore.WithDryIoc.Models
+﻿namespace AspNetCore.WithoutDryIoc.Models
 {
     public class ComplexType{
         public int Id { get; set; }

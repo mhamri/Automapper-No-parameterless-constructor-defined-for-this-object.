@@ -1,12 +1,18 @@
-﻿using AspNetCore.WithDryIoc.Models;
+﻿using AspNetCore.WithoutDryIoc.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCore.WithDryIoc.Controllers
+namespace AspNetCore.WithoutDryIoc.Controllers
 {
     public class HomeController : Controller
     {
-        // GET
+        private readonly IHostingEnvironment _hosting;
+
+        public HomeController(IHostingEnvironment hosting)
+        {
+            _hosting = hosting;
+        }
         public IActionResult Index()
         {
             //this throw parameterless construct
@@ -22,7 +28,7 @@ namespace AspNetCore.WithDryIoc.Controllers
 
             var sampleClass= Mapper.Map<SampleClass>(dto);
 
-            return Ok(sampleClass);
+            return Ok(new {makeSureHostRegistered= _hosting, sampleClass});
         }
     }
 }
