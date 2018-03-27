@@ -23,7 +23,7 @@ namespace AspNetCore.WithoutDryIoc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddAutoMapper();
+            services.AddAutoMapper(typeof(Startup).Assembly);
 
             /*
             // just to test added these to make sure it is not because the DI doesn't know about these classess, you can uncomment it
